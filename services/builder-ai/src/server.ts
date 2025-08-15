@@ -20,7 +20,7 @@ import { requireAuth, optionalAuth, apiAuthManager, AuthenticatedRequest } from 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8082;
+const PORT = parseInt(process.env.PORT || '8082', 10);
 const exec = promisify(cpExec);
 const LOTTERY_REPO_PATH = process.env.LOTTERY_REPO_PATH || '/workspace/1800-lottery-v3-thirdweb';
 
@@ -637,11 +637,12 @@ process.on('unhandledRejection', async (reason, promise) => {
   process.exit(1);
 });
 
-// Start server with error handling
-const server = app.listen(PORT, async () => {
-  console.log(`🚀 Builder-AI server starting on port ${PORT}`);
-  logger.info(`🚀 Builder-AI server running on port ${PORT}`, {
+// Start server with error handling - bind to all interfaces for Docker
+const server = app.listen(PORT, '0.0.0.0', async () => {
+  console.log(`🚀 Builder-AI server starting on 0.0.0.0:${PORT}`);
+  logger.info(`🚀 Builder-AI server running on 0.0.0.0:${PORT}`, {
     port: PORT,
+    host: '0.0.0.0',
     environment: process.env.NODE_ENV || 'development',
     railway: {
       deployment: process.env.RAILWAY_DEPLOYMENT_ID || 'local',
