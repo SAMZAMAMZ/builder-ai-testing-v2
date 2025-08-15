@@ -32,8 +32,8 @@ cpu = "1vCPU"
 
 # Environment variables (to be set in Railway dashboard)
 [services.env]
-CLAUDE_API_KEY_1 = { required = true }
+CLAUDE_API_KEY_1 = { required = false }
 CLAUDE_API_KEY_2 = { required = false }
 CLAUDE_API_KEY_3 = { required = false }
-BUILDER_AI_MASTER_KEY = { required = true }
-BUILDER_AI_INTERNAL_KEY = { required = true }
+BUILDER_AI_MASTER_KEY = { required = false }
+BUILDER_AI_INTERNAL_KEY = { required = false }

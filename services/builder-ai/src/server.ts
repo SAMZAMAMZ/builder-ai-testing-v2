@@ -52,6 +52,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+// Simple ping endpoint for testing
+app.get('/ping', (req: Request, res: Response) => {
+  console.log('Ping request received');
+  res.send('pong');
+});
+
 // Root endpoint - Builder-AI Dashboard
 app.get('/', (req: Request, res: Response) => {
   res.send(`
@@ -234,18 +240,25 @@ app.get('/', (req: Request, res: Response) => {
 
 // Health check endpoint - Critical for Railway
 app.get('/health', (req: Request, res: Response) => {
-  res.json({
+  console.log('Health check requested from:', req.ip, req.get('User-Agent'));
+  
+  const healthData = {
     status: 'healthy',
     service: 'Builder-AI',
     version: '1.0.0',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
+    port: PORT,
+    host: '0.0.0.0',
     railway: {
       deployment: process.env.RAILWAY_DEPLOYMENT_ID || 'local',
       service: process.env.RAILWAY_SERVICE_NAME || 'builder-ai'
     }
-  });
+  };
+  
+  console.log('Responding with health data:', healthData);
+  res.json(healthData);
 });
 
 // Status endpoint for detailed information
