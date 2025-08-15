@@ -76,7 +76,7 @@ export class SecureCommandExecutor {
         ...process.env,
         ...sanitizedEnvVars,
         // Security: Remove dangerous environment variables
-        PATH: this.getSafePath(),
+        PATH: this.getSafePath() + ':' + (process.env.PATH || ''),
         // Ensure safe execution environment
         NODE_ENV: process.env.NODE_ENV || 'development'
       };
@@ -248,8 +248,8 @@ export class SecureCommandExecutor {
   }
 
   private getSafePath(): string {
-    // Provide a safe PATH environment variable
-    return '/usr/local/bin:/usr/bin:/bin';
+    // Provide a safe PATH environment variable with Node.js paths for Railway/Docker
+    return '/app/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/opt/nodejs/bin:/usr/local/nodejs/bin';
   }
 
   private sanitizeOutput(output: string): string {
