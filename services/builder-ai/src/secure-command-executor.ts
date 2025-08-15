@@ -76,7 +76,7 @@ export class SecureCommandExecutor {
         ...process.env,
         ...sanitizedEnvVars,
         // Security: Remove dangerous environment variables
-        PATH: this.getSafePath(),
+        PATH: this.getSafePath() + ':' + (process.env.PATH || ''),
         // Ensure safe execution environment
         NODE_ENV: process.env.NODE_ENV || 'development'
       };
@@ -84,12 +84,14 @@ export class SecureCommandExecutor {
       // Parse command to separate executable and arguments
       const { executable, args } = this.parseCommand(sanitizedCommand);
       
+      // For Railway/NIXPACKS compatibility, use shell for Node.js commands
+      const needsShell = ['node', 'npm', 'npx', 'hardhat'].includes(executable);
+      
       const child = spawn(executable, args, {
         cwd: workingDirectory,
         env,
         stdio: ['ignore', 'pipe', 'pipe'],
-        // Security: Prevent shell interpretation (Node.js available in Docker container)
-        shell: false
+        shell: needsShell
       });
       
       let stdout = '';
