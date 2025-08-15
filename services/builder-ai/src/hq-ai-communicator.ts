@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+// Dynamic import for node-fetch to avoid ES module issues
 import { TaskResult, HQAINotification } from './types.js';
 import { Logger } from './logger.js';
 
@@ -22,6 +22,7 @@ export class HQAICommunicator {
   
   async healthCheck(): Promise<boolean> {
     try {
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(`${this.hqaiUrl}/status`, {
         method: 'GET',
         // timeout: 5000 // Note: timeout not supported in node-fetch
@@ -188,6 +189,7 @@ export class HQAICommunicator {
   
   private async sendNotificationToHQAI(notification: HQAINotification): Promise<void> {
     try {
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(`${this.hqaiUrl}/notify`, {
         method: 'POST',
         headers: {
@@ -218,6 +220,7 @@ export class HQAICommunicator {
   
   private async sendNotificationToSentry(notification: any): Promise<void> {
     try {
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(`${this.sentryUrl}/notify`, {
         method: 'POST',
         headers: {
@@ -253,6 +256,7 @@ export class HQAICommunicator {
   
   private async updateBatchStatus(batchId: string, status: string, data: any): Promise<void> {
     try {
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(`${this.hqaiUrl}/batch/${batchId}/status`, {
         method: 'PUT',
         headers: {
