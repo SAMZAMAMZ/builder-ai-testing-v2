@@ -1,6 +1,5 @@
 import { spawn, exec } from 'child_process';
 import { promisify } from 'util';
-import fetch from 'node-fetch';
 import { CommandResult } from './types.js';
 import { Logger } from './logger.js';
 import { SecureCommandExecutor } from './secure-command-executor.js';
@@ -121,6 +120,7 @@ export class CursorIntegration {
     try {
       // Check if contract is already verified by querying the explorer
       const explorerUrl = this.getExplorerApiUrl(network);
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(`${explorerUrl}?module=contract&action=getsourcecode&address=${contractAddress}`);
       
       if (response.ok) {
@@ -278,6 +278,7 @@ export class CursorIntegration {
       
       const prompt = this.buildAnalysisPrompt(fileContent.stdout, analysisType);
       
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(`${this.cursorApiUrl}/messages`, {
         method: 'POST',
         headers: {

@@ -2,14 +2,14 @@
   "name": "builder-ai-tester",
   "version": "2.0.0",
   "description": "Automated testing service for 1800-Lottery smart contracts",
-  "main": "dist/server-minimal.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/server-minimal.js",
+    "start": "node --max-old-space-size=2048 --expose-gc dist/server.js",
     "dev": "ts-node src/server.ts",
     "test": "echo 'Builder-AI health check' && exit 0",
     "railway:build": "tsc",
-    "railway:start": "node dist/server-minimal.js",
+    "railway:start": "node --max-old-space-size=2048 --expose-gc dist/server.js",
     "railway:health": "curl -f http://localhost:$PORT/health || exit 1",
     "overnight:start": "node scripts/overnight-continuous-processor.js",
     "debug-build": "echo 'Node version:' && node --version && echo 'npm version:' && npm --version && echo 'TypeScript version:' && npx tsc --version && npm run build"

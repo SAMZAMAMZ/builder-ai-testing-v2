@@ -26,5 +26,5 @@ RUN mkdir -p /app/contracts /app/checklists
 
 EXPOSE 8082
 
-# Start the minimal stable application
-CMD ["node", "dist/server-minimal.js"]
+# Start the full Builder-AI application
+CMD ["node", "--max-old-space-size=2048", "--expose-gc", "dist/server.js"]
