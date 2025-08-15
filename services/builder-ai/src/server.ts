@@ -1,3 +1,5 @@
+console.log('🚀 Starting Builder-AI server initialization...');
+
 import { exec as cpExec } from 'child_process';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -16,15 +18,20 @@ import { TaskProcessor } from './task-processor.js';
 import { notifications, sendTelegramNotification } from './telegram-notifier.js';
 import { requireAuth, optionalAuth, apiAuthManager, AuthenticatedRequest } from './auth-middleware.js';
 
+console.log('📦 Loading environment variables...');
 // Load environment variables
 dotenv.config();
 
+console.log('🏗️ Setting up Express app...');
 const app = express();
 const PORT = parseInt(process.env.PORT || '8082', 10);
 const exec = promisify(cpExec);
 const LOTTERY_REPO_PATH = process.env.LOTTERY_REPO_PATH || '/workspace/1800-lottery-v3-thirdweb';
 
+console.log(`📡 Configured to run on port: ${PORT}`);
+
 // Initialize logger
+console.log('📝 Initializing logger...');
 const logger = new Logger('Builder-AI');
 
 // Log Claude API Manager status
@@ -651,6 +658,7 @@ process.on('unhandledRejection', async (reason, promise) => {
 });
 
 // Start server with error handling - bind to all interfaces for Docker
+console.log(`🚀 Attempting to start server on 0.0.0.0:${PORT}...`);
 const server = app.listen(PORT, '0.0.0.0', async () => {
   console.log(`🚀 Builder-AI server starting on 0.0.0.0:${PORT}`);
   logger.info(`🚀 Builder-AI server running on 0.0.0.0:${PORT}`, {
