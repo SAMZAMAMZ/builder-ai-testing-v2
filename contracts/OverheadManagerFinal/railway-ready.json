@@ -1,0 +1,12 @@
+{
+  "contract": "OverheadManagerFinal",
+  "testSuite": true,
+  "packageJson": true,
+  "hardhatConfig": true,
+  "railwayReady": true,
+  "createdFiles": [
+    "package.json (created)",
+    "hardhat.config.js (created)"
+  ],
+  "preparedAt": "2025-08-15T07:38:51.058Z"
+}

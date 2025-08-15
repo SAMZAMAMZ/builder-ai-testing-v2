@@ -1,0 +1,36 @@
+{
+  "name": "@1800-lottery/financemanager-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive test suite for FinanceManagerFinal contract - 215 tests across 8 modules",
+  "main": "FinanceManagerFinal-Complete-TestSuite.js",
+  "scripts": {
+    "test": "npx hardhat test FinanceManagerFinal-Complete-TestSuite.js",
+    "test-verbose": "npx hardhat test FinanceManagerFinal-Complete-TestSuite.js --verbose",
+    "test-gas": "npx hardhat test FinanceManagerFinal-Complete-TestSuite.js --gas-reporter",
+    "coverage": "npx hardhat coverage --testfiles FinanceManagerFinal-Complete-TestSuite.js"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/contracts": "^4.9.6",
+    "chai": "^4.3.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.19.4",
+    "hardhat-gas-reporter": "^1.0.9"
+  },
+  "keywords": [
+    "ethereum",
+    "polygon",
+    "lottery",
+    "smart-contract",
+    "testing",
+    "hardhat",
+    "chai",
+    "1800-lottery",
+    "finance-manager",
+    "fund-distribution",
+    "prize-management"
+  ],
+  "author": "1800-Lottery Development Team",
+  "license": "MIT"
+}

@@ -1,0 +1,61 @@
+{
+    "name": "builder-ai-testing",
+    "version": "2.0.0",
+    "description": "Autonomous Smart Contract Testing & Analysis Platform for 1800-Lottery Protocol",
+    "main": "services/builder-ai/dist/server.js",
+    "private": true,
+    "scripts": {
+        "start": "cd services/builder-ai && npm start",
+        "dev": "cd services/builder-ai && npm run dev",
+        "build": "cd services/builder-ai && npm run build",
+        "test": "cd services/builder-ai && npm test",
+        "install-all": "cd services/builder-ai && npm install",
+        "railway:build": "cd services/builder-ai && npm run railway:build",
+        "railway:start": "cd services/builder-ai && npm run railway:start",
+        "overnight:start": "cd services/builder-ai && npm run overnight:start",
+        "health": "cd services/builder-ai && npm run railway:health",
+        "clean": "rm -rf services/builder-ai/node_modules services/builder-ai/dist contracts/*/node_modules contracts/*/cache contracts/*/artifacts",
+        "setup": "npm run install-all && npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-username/builder-ai-testing.git"
+    },
+    "keywords": [
+        "blockchain",
+        "smart-contracts",
+        "testing",
+        "ai",
+        "automation",
+        "claude",
+        "hardhat",
+        "ethereum",
+        "polygon",
+        "defi",
+        "lottery",
+        "1800-lottery"
+    ],
+    "author": "Builder-AI Development Team",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/your-username/builder-ai-testing/issues"
+    },
+    "homepage": "https://github.com/your-username/builder-ai-testing#readme",
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=8.0.0"
+    },
+    "workspaces": [
+        "services/builder-ai"
+    ],
+    "devDependencies": {},
+    "dependencies": {},
+    "railway": {
+        "build": {
+            "command": "npm run railway:build"
+        },
+        "deploy": {
+            "startCommand": "npm run railway:start"
+        }
+    }
+}

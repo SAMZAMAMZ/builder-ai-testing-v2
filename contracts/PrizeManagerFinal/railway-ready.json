@@ -1,0 +1,11 @@
+{
+  "contract": "PrizeManagerFinal",
+  "testSuite": true,
+  "packageJson": true,
+  "hardhatConfig": true,
+  "railwayReady": true,
+  "createdFiles": [
+    "hardhat.config.js (created)"
+  ],
+  "preparedAt": "2025-08-15T07:38:51.056Z"
+}

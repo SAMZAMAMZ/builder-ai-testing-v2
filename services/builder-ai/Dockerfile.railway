@@ -1,0 +1,35 @@
+# Builder-AI Railway Optimized Dockerfile
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apk add --no-cache git curl
+
+# Copy package files
+COPY package*.json ./
+COPY tsconfig.json ./
+
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
+
+# Copy source code
+COPY src/ ./src/
+COPY scripts/ ./scripts/
+
+# Build TypeScript
+RUN npm run build
+
+# Create overnight reports directory
+RUN mkdir -p /app/overnight-reports
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:$PORT/health || exit 1
+
+# Expose port
+EXPOSE $PORT
+
+# Start application
+CMD ["npm", "run", "railway:start"]

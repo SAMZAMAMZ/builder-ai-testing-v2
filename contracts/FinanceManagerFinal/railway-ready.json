@@ -1,0 +1,9 @@
+{
+  "contract": "FinanceManagerFinal",
+  "testSuite": true,
+  "packageJson": true,
+  "hardhatConfig": true,
+  "railwayReady": true,
+  "createdFiles": [],
+  "preparedAt": "2025-08-15T07:38:51.056Z"
+}

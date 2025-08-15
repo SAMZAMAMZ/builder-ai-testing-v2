@@ -1,0 +1,53 @@
+{
+  "testRuns": [
+    {
+      "testFile": "EntryGateFinal-Complete-TestSuite.js",
+      "command": "npx hardhat test EntryGateFinal-Complete-TestSuite.js --config hardhat.config.js",
+      "exitCode": 1,
+      "duration": 1245,
+      "stdout": "\n",
+      "stderr": "Error HH1006: The file /home/admin1800/1800-lottery-v4-thirdweb/tests/EntryGateFinal/node_modules/@ensdomains/ens/contracts/Deed.sol is treated as local but is inside a node_modules directory\nFor more info go to https://hardhat.org/HH1006 or run Hardhat with --show-stack-traces\n",
+      "timestamp": "2025-08-15T15:10:30.319Z",
+      "success": false,
+      "totalTests": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "testFile": "EntryGateFinal-Module1-Tests.js",
+      "command": "npx hardhat test EntryGateFinal-Module1-Tests.js --config hardhat.config.js",
+      "exitCode": 1,
+      "duration": 1229,
+      "stdout": "\n",
+      "stderr": "Error HH1006: The file /home/admin1800/1800-lottery-v4-thirdweb/tests/EntryGateFinal/node_modules/@ensdomains/ens/contracts/Deed.sol is treated as local but is inside a node_modules directory\nFor more info go to https://hardhat.org/HH1006 or run Hardhat with --show-stack-traces\n",
+      "timestamp": "2025-08-15T15:10:31.548Z",
+      "success": false,
+      "totalTests": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "testFile": "test-module1.js",
+      "command": "npx hardhat test test-module1.js --config hardhat.config.js",
+      "exitCode": 1,
+      "duration": 1249,
+      "stdout": "\n",
+      "stderr": "Error HH1006: The file /home/admin1800/1800-lottery-v4-thirdweb/tests/EntryGateFinal/node_modules/@ensdomains/ens/contracts/Deed.sol is treated as local but is inside a node_modules directory\nFor more info go to https://hardhat.org/HH1006 or run Hardhat with --show-stack-traces\n",
+      "timestamp": "2025-08-15T15:10:32.798Z",
+      "success": false,
+      "totalTests": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "summary": {
+    "totalTests": 0,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0
+  },
+  "timestamp": "2025-08-15T15:10:29.074Z"
+}

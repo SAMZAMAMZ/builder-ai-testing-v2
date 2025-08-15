@@ -1,0 +1,11 @@
+{
+  "createdAt": "2025-08-15T18:19:15.033Z",
+  "description": "Batch download package for local laptop access",
+  "contents": {
+    "databases": "JSONL database files",
+    "Passed-First-Time": "Tests that passed on first attempt",
+    "Failed-Tests": "Tests that failed initially",
+    "Passed-Fixed-Tests": "Tests that passed after auto-fix",
+    "Critical-Failure": "Tests that could not be fixed"
+  }
+}

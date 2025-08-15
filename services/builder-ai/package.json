@@ -1,0 +1,49 @@
+{
+  "name": "builder-ai-tester",
+  "version": "2.0.0",
+  "description": "Automated testing service for 1800-Lottery smart contracts",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --max-old-space-size=2048 --expose-gc dist/server.js",
+    "dev": "ts-node src/server.ts",
+    "test": "echo 'Builder-AI health check' && exit 0",
+    "railway:build": "npm run build",
+    "railway:start": "node --max-old-space-size=2048 --expose-gc dist/server.js",
+    "railway:health": "curl -f http://localhost:$PORT/health || exit 1",
+    "overnight:start": "node scripts/overnight-continuous-processor.js",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.60.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "winston": "^3.17.0",
+    "express-rate-limit": "^6.7.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.23",
+    "@types/helmet": "^0.0.48",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^20.10.0",
+    "@types/node-fetch": "^2.6.13",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "railway": {
+    "build": {
+      "command": "npm run railway:build"
+    },
+    "deploy": {
+      "startCommand": "npm run railway:start"
+    }
+  }
+}

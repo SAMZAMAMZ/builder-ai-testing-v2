@@ -1,0 +1,79 @@
+{
+  "contractName": "EntryGate",
+  "runNumber": 2,
+  "timestamp": "2025-08-15T16:26:33.712Z",
+  "passRate": {
+    "total": 18,
+    "passed": 13,
+    "failed": 4,
+    "skipped": 1,
+    "percentage": 72
+  },
+  "failureAnalysis": [
+    {
+      "testName": "Validate affiliate address is not the player's own address",
+      "category": "BUSINESS_LOGIC",
+      "rootCause": "Test expectation misaligned with contract behavior",
+      "impact": "MEDIUM - Logic works but test needs alignment",
+      "priority": "MEDIUM",
+      "timeEstimate": "2 minutes",
+      "suggestedFix": "Update test expectation to match intended behavior"
+    },
+    {
+      "testName": "Validate player has approved sufficient USDT allowance",
+      "category": "BUSINESS_LOGIC",
+      "rootCause": "Test expectation misaligned with contract behavior",
+      "impact": "MEDIUM - Logic works but test needs alignment",
+      "priority": "MEDIUM",
+      "timeEstimate": "2 minutes",
+      "suggestedFix": "Update test expectation to match intended behavior"
+    },
+    {
+      "testName": "Validate entry counter increments correctly",
+      "category": "MISSING_FUNCTION",
+      "rootCause": "Contract missing expected function interface",
+      "impact": "HIGH - Interface gap affects external integrations",
+      "priority": "HIGH",
+      "timeEstimate": "5 minutes",
+      "suggestedFix": "Add missing function to contract"
+    },
+    {
+      "testName": "Validate EntryCreated event is emitted",
+      "category": "EVENT_MISMATCH",
+      "rootCause": "Event name/parameters differ between test and contract",
+      "impact": "LOW - Cosmetic naming difference",
+      "priority": "LOW",
+      "timeEstimate": "3 minutes",
+      "suggestedFix": "Standardize event names or update test"
+    }
+  ],
+  "recommendedImprovements": [],
+  "vulnerabilityAssessment": {
+    "critical": [],
+    "high": [],
+    "medium": [],
+    "low": [],
+    "info": []
+  },
+  "overallRating": {
+    "score": 89,
+    "grade": "B",
+    "readiness": "READY",
+    "confidence": "MEDIUM",
+    "factors": [
+      "Pass Rate: 72%",
+      "Security: 100/100",
+      "Code Quality: 100/100"
+    ]
+  },
+  "missionCompliance": {
+    "overallCompliance": "NEEDS_IMPROVEMENT",
+    "criticalInvariants": [],
+    "businessLogic": [],
+    "securityRequirements": [],
+    "performanceTargets": [],
+    "recommendations": [
+      "Significant test failures indicate potential compliance issues"
+    ]
+  }
+}

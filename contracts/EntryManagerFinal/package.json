@@ -1,0 +1,52 @@
+{
+  "name": "@1800-lottery/entrymanager-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive test suite for EntryManagerFinal contract - 118 tests across 8 modules",
+  "main": "EntryManagerFinal-Complete-TestSuite.js",
+  "scripts": {
+    "test": "npx hardhat test EntryManagerFinal-Complete-TestSuite.js",
+    "test-verbose": "npx hardhat test EntryManagerFinal-Complete-TestSuite.js --verbose",
+    "test-gas": "npx hardhat test EntryManagerFinal-Complete-TestSuite.js --gas-reporter",
+    "test-full": "npx hardhat test EntryManagerFinal-Complete-TestSuite.js && npx hardhat test EntryManagerFinal-Remaining-Modules.js",
+    "coverage": "npx hardhat coverage --testfiles EntryManagerFinal-Complete-TestSuite.js"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/contracts": "^4.9.6",
+    "chai": "^4.3.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.19.4",
+    "hardhat-gas-reporter": "^1.0.9"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "@typechain/ethers-v5": "^10.2.1",
+    "@typechain/hardhat": "^6.1.6",
+    "solidity-coverage": "^0.8.5",
+    "typechain": "^8.3.2"
+  },
+  "keywords": [
+    "ethereum",
+    "polygon",
+    "lottery",
+    "smart-contract",
+    "testing",
+    "hardhat",
+    "chai",
+    "1800-lottery",
+    "entry-manager",
+    "draw-management",
+    "fund-management",
+    "player-registry"
+  ],
+  "author": "1800-Lottery Development Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1800-Lottery/1800-lottery-v4-thirdweb.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

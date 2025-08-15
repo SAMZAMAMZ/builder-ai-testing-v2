@@ -1,0 +1,113 @@
+{
+  "contractPath": "/home/admin1800/1800-lottery-v4-thirdweb/contracts/EntryGateFinal.sol",
+  "timestamp": "2025-08-15T12:05:53.038Z",
+  "security": {
+    "issues": [
+      {
+        "type": "security",
+        "severity": "high",
+        "issue": "Missing access control mechanisms",
+        "recommendation": "Implement Ownable or AccessControl for privileged functions",
+        "fixEstimate": "15 minutes",
+        "codeExample": "\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\n\ncontract YourContract is Ownable {\n    function privilegedFunction() external onlyOwner {\n        // Only owner can call this\n    }\n}"
+      }
+    ],
+    "score": 80,
+    "criticalCount": 0,
+    "highCount": 1
+  },
+  "functionality": {
+    "issues": [
+      {
+        "type": "functionality",
+        "severity": "medium",
+        "issue": "Business logic validation missing: self-referral allowed by design",
+        "recommendation": "Add appropriate validation logic to contract",
+        "fixEstimate": "10 minutes",
+        "testEvidence": "1.1.2 - Self-referral validation",
+        "codeExample": "\n// Add self-referral validation if required by business logic\nrequire(player != affiliate, \"Self-referral not allowed\");"
+      },
+      {
+        "type": "functionality",
+        "severity": "high",
+        "issue": "Missing function: getTotalEntries",
+        "recommendation": "Implement missing function getTotalEntries in contract",
+        "fixEstimate": "15 minutes",
+        "testEvidence": "1.2.4 - Entry counter",
+        "codeExample": "\nfunction getTotalEntries() external view returns (uint256) {\n    return playersInCurrentBatch;\n}"
+      }
+    ],
+    "score": 70,
+    "missingFunctions": 1,
+    "missingEvents": 0
+  },
+  "optimization": {
+    "issues": [
+      {
+        "type": "optimization",
+        "severity": "low",
+        "issue": "Multiple storage reads detected",
+        "recommendation": "Cache frequently accessed storage variables in memory",
+        "fixEstimate": "5 minutes"
+      }
+    ],
+    "score": 95,
+    "gasOptimizations": 1
+  },
+  "compatibility": {
+    "issues": [
+      {
+        "type": "compatibility",
+        "severity": "low",
+        "issue": "Event naming mismatch with test expectations",
+        "recommendation": "Consider standardizing event names across contracts",
+        "fixEstimate": "2 minutes",
+        "note": "This may be intentional design choice"
+      }
+    ],
+    "score": 90,
+    "namingIssues": 1
+  },
+  "testAlignment": {
+    "issues": [
+      {
+        "type": "testAlignment",
+        "severity": "low",
+        "issue": "Test expects different business logic than implemented",
+        "recommendation": "Update test to match actual contract behavior",
+        "fixEstimate": "2 minutes",
+        "testFile": "test-module1.js",
+        "contractBehavior": "Contract intentionally allows self-referral"
+      },
+      {
+        "type": "testAlignment",
+        "severity": "low",
+        "issue": "Error message format difference",
+        "recommendation": "Update test to accept multiple error message formats",
+        "fixEstimate": "1 minute",
+        "testFile": "test-module1.js"
+      }
+    ],
+    "score": 100,
+    "testFixesNeeded": 2
+  },
+  "overallScore": 81,
+  "recommendations": [
+    {
+      "priority": "high",
+      "category": "functionality",
+      "title": "Implement 1 missing function(s)",
+      "description": "Missing functions prevent proper contract operation",
+      "estimatedTime": "15 minutes",
+      "impact": "Enables full contract functionality and improves test compatibility"
+    },
+    {
+      "priority": "medium",
+      "category": "optimization",
+      "title": "Apply 1 gas optimization(s)",
+      "description": "Optimizations will reduce transaction costs",
+      "estimatedTime": "5 minutes",
+      "impact": "Reduces gas costs for users"
+    }
+  ]
+}

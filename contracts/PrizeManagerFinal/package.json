@@ -1,0 +1,22 @@
+{
+  "name": "@1800-lottery/prizemanager-tests",
+  "version": "1.0.0",
+  "description": "Security-hardened test suite for PrizeManagerFinal - 293 tests with DoS protection",
+  "main": "PrizeManagerFinal-Complete-TestSuite.js",
+  "scripts": {
+    "test": "npx hardhat test PrizeManagerFinal-Complete-TestSuite.js",
+    "test-security": "npx hardhat test --grep 'SECURITY'",
+    "coverage": "npx hardhat coverage"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/contracts": "^4.9.6",
+    "chai": "^4.3.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.19.4"
+  },
+  "keywords": ["ethereum", "polygon", "lottery", "prize-manager", "security", "pull-over-push", "dos-protection"],
+  "author": "1800-Lottery Development Team",
+  "license": "MIT"
+}

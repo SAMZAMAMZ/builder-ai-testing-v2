@@ -1,0 +1,39 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+[[services]]
+name = "builder-ai-tester"
+source = "."
+
+[services.variables]
+NODE_ENV = "production"
+PORT = { default = "8082" }
+
+[services.build]
+buildCommand = "npm run railway:build"
+
+[services.deploy]
+startCommand = "npm run railway:start"
+
+[services.healthcheck]
+path = "/health"
+timeout = 30
+
+# Resource limits
+[services.resources]
+memory = "2GB"
+cpu = "1vCPU"
+
+# Environment variables (to be set in Railway dashboard)
+[services.env]
+CLAUDE_API_KEY_1 = { required = true }
+CLAUDE_API_KEY_2 = { required = false }
+CLAUDE_API_KEY_3 = { required = false }
+BUILDER_AI_MASTER_KEY = { required = true }
+BUILDER_AI_INTERNAL_KEY = { required = true }

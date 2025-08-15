@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-08-14T21:09:07.013Z",
+  "totalTests": 0,
+  "passedFirstTime": 0,
+  "failedFirstTime": 0,
+  "fixedAfterFailure": 0,
+  "criticalFailures": 0,
+  "successRate": 0,
+  "activeBatches": 0,
+  "recentActivity": [],
+  "systemHealth": {
+    "builderAI": "healthy",
+    "sentryAI": "failed",
+    "database": "healthy"
+  }
+}

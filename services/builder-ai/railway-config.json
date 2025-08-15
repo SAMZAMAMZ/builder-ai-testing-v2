@@ -1,0 +1,40 @@
+{
+  "service": "builder-ai",
+  "build": {
+    "command": "npm install && npm run build",
+    "rootDirectory": "/services/builder-ai"
+  },
+  "deploy": {
+    "startCommand": "npm run start-stable",
+    "healthCheckPath": "/health",
+    "healthCheckTimeout": 300,
+    "restartPolicy": "ON_FAILURE",
+    "maxRetries": 3
+  },
+  "environment": {
+    "NODE_ENV": "production",
+    "PORT": "8082",
+    "required": [
+      "CLAUDE_API_KEY_1",
+      "CLAUDE_API_KEY_2",
+      "CLAUDE_API_KEY_3",
+      "GITHUB_TOKEN",
+      "TELEGRAM_BOT_TOKEN",
+      "TELEGRAM_ALLOWED_CHAT_ID",
+      "BUILDER_AI_MASTER_KEY",
+      "BUILDER_AI_INTERNAL_KEY"
+    ],
+    "optional": [
+      "AUTO_FIX_ENABLED",
+      "LOG_SENSITIVE_DATA_MASKING",
+      "TEST_TIMEOUT_MS",
+      "MAX_CONCURRENT_TESTS"
+    ]
+  },
+  "scaling": {
+    "minInstances": 1,
+    "maxInstances": 1,
+    "memoryLimit": "2GB",
+    "cpuLimit": "1vCPU"
+  }
+}

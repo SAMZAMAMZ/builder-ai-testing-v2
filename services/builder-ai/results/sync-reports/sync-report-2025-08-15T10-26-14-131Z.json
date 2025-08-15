@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-08-15T10:26:14.131Z",
+  "totalTests": 2,
+  "passedFirstTime": 2,
+  "failedFirstTime": 0,
+  "fixedAfterFailure": 0,
+  "criticalFailures": 0,
+  "successRate": 100,
+  "activeBatches": 0,
+  "recentActivity": [
+    {
+      "batchNumber": "batch-1755243150547",
+      "testNumber": "entrygate-test-1755243150546",
+      "testDetails": "Execute all EntryGate tests (156 total)",
+      "testing": "test",
+      "outcome": "PASSED",
+      "timestamp": "2025-08-15T07:32:32.637Z",
+      "contractName": "EntryGate",
+      "testType": "test",
+      "duration": 2090,
+      "id": "fp-1755243152637-0hngh9brp",
+      "loggedAt": "2025-08-15T07:32:32.637Z"
+    },
+    {
+      "batchNumber": "batch-1755239586303",
+      "testNumber": "entrygate-test-1755239586299",
+      "testDetails": "Execute all EntryGate tests (156 total)",
+      "testing": "test",
+      "outcome": "PASSED",
+      "timestamp": "2025-08-15T06:33:09.820Z",
+      "contractName": "EntryGate",
+      "testType": "test",
+      "duration": 3517,
+      "id": "fp-1755239589820-m2j6nq0tp",
+      "loggedAt": "2025-08-15T06:33:09.820Z"
+    }
+  ],
+  "systemHealth": {
+    "builderAI": "healthy",
+    "sentryAI": "failed",
+    "database": "healthy"
+  }
+}
