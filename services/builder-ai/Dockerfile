@@ -27,4 +27,4 @@ RUN mkdir -p /app/contracts /app/checklists
 EXPOSE 8082
 
 # Start the application from the correct directory
-CMD ["node", "railway-startup-integrated.js"]
+CMD ["node", "--max-old-space-size=2048", "--expose-gc", "dist/server.js"]
