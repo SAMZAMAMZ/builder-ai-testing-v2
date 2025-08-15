@@ -17,21 +17,17 @@ process.on('uncaughtException', (error) => {
 // Set Node.js options for better memory management
 process.env.NODE_OPTIONS = '--max-old-space-size=2048 --expose-gc';
 
-// Import and start the server
+// Import and start the server - force full Builder-AI system
 try {
-  console.log('📦 Loading main server module...');
+  console.log('📦 Loading Builder-AI full system...');
   require('./dist/server.js');
-  console.log('✅ Server module loaded successfully');
+  console.log('✅ Full Builder-AI server loaded successfully');
 } catch (error) {
-  console.error('❌ Failed to load server:', error);
+  console.error('❌ Failed to load full Builder-AI server:', error);
+  console.error('Error details:', error.message);
+  console.error('Stack trace:', error.stack);
   
-  // Fallback to minimal server if full server fails
-  console.log('🔄 Attempting fallback to minimal server...');
-  try {
-    require('./dist/server-minimal.js');
-    console.log('✅ Minimal server started as fallback');
-  } catch (fallbackError) {
-    console.error('❌ Fallback also failed:', fallbackError);
-    process.exit(1);
-  }
+  // Exit and let Railway restart with logs for debugging
+  console.log('💥 Exiting to show error details in Railway logs...');
+  process.exit(1);
 }
