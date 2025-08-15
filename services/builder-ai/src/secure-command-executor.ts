@@ -26,6 +26,16 @@ export class SecureCommandExecutor {
       '/app/tests',
       '/home/admin1800/1800-lottery-v4-thirdweb/tests',
       '/home/admin1800/1800-lottery-v4-thirdweb/services/builder-ai',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/EntryGateFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/EntryManagerFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/FinanceManagerFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/DrawManagerFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/PrizeManagerFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/OverheadManagerFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/GasManagerFinalGelato',
+      '/home/admin1800/builder-ai-testing-fresh/contracts/QuarantineVaultFinal',
+      '/home/admin1800/builder-ai-testing-fresh/contracts',
+      '/home/admin1800/builder-ai-testing-fresh',
       '/tmp/contracts',
       '/tmp/tests'
     ]);
