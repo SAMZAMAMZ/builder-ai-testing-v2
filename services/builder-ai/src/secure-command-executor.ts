@@ -84,12 +84,15 @@ export class SecureCommandExecutor {
       // Parse command to separate executable and arguments
       const { executable, args } = this.parseCommand(sanitizedCommand);
       
+      // For Railway container compatibility, use shell for basic commands
+      const useShell = ['echo', 'node', 'npm', 'npx', 'hardhat', 'which', 'pwd', 'ls', 'cat'].includes(executable);
+      
       const child = spawn(executable, args, {
         cwd: workingDirectory,
         env,
         stdio: ['ignore', 'pipe', 'pipe'],
-        // Security: Prevent shell interpretation
-        shell: false
+        // Use shell for basic commands that need PATH resolution
+        shell: useShell
       });
       
       let stdout = '';
