@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+// Dynamic import for node-fetch to avoid ES module issues
 /**
 * Telegram notification system for Builder-AI monitoring
 * Provides real-time alerts for system status and errors
@@ -30,6 +30,7 @@ class TelegramNotifier {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
 
+      const { default: fetch } = await import('node-fetch');
       const response = await fetch(
         `https://api.telegram.org/bot${this.config.botToken}/sendMessage`,
         {
