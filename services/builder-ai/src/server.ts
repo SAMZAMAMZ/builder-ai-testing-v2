@@ -333,8 +333,16 @@ app.post('/receive-batch', requireAuth, async (req: AuthenticatedRequest, res: R
       priority
     });
     
-    // 1. Acknowledge receipt to HQ-AI
-    await hqaiCommunicator.acknowledgeBatch(batchId, 'received');
+    // 1. Acknowledge receipt to HQ-AI (non-blocking)
+    try {
+      await hqaiCommunicator.acknowledgeBatch(batchId, 'received');
+      logger.info(`Acknowledged batch ${batchId} to HQ-AI`);
+    } catch (error) {
+      logger.warn(`Failed to acknowledge batch to HQ-AI (processing will continue)`, {
+        batchId,
+        error: error instanceof Error ? error.message : String(error)
+      });
+    }
     
     // 2. Start processing tasks in background (non-blocking)
     taskProcessor.processBatch(batchId, tasks, priority)
@@ -345,8 +353,16 @@ app.post('/receive-batch', requireAuth, async (req: AuthenticatedRequest, res: R
           failedTasks: results.filter(r => !r.success).length
         });
         
-        // Report completion to HQ-AI
-        await hqaiCommunicator.reportBatchCompletion(batchId, results);
+        // Report completion to HQ-AI (non-blocking)
+        try {
+          await hqaiCommunicator.reportBatchCompletion(batchId, results);
+          logger.info(`Reported batch completion to HQ-AI`, { batchId });
+        } catch (error) {
+          logger.warn(`Failed to report batch completion to HQ-AI`, {
+            batchId,
+            error: error instanceof Error ? error.message : String(error)
+          });
+        }
       })
       .catch(async (error) => {
         logger.error(`Batch ${batchId} processing failed`, {
@@ -354,8 +370,17 @@ app.post('/receive-batch', requireAuth, async (req: AuthenticatedRequest, res: R
           error: error instanceof Error ? error.message : String(error)
         });
         
-        // Report error to HQ-AI
-        await hqaiCommunicator.reportBatchError(batchId, error instanceof Error ? error.message : String(error));
+        // Report error to HQ-AI (non-blocking)
+        try {
+          await hqaiCommunicator.reportBatchError(batchId, error instanceof Error ? error.message : String(error));
+          logger.info(`Reported batch error to HQ-AI`, { batchId });
+        } catch (reportError) {
+          logger.warn(`Failed to report batch error to HQ-AI`, {
+            batchId,
+            originalError: error instanceof Error ? error.message : String(error),
+            reportError: reportError instanceof Error ? reportError.message : String(reportError)
+          });
+        }
       });
     
     // 3. Return immediate acknowledgment
@@ -375,8 +400,11 @@ app.post('/receive-batch', requireAuth, async (req: AuthenticatedRequest, res: R
     
     try {
       await hqaiCommunicator.reportBatchError(batchId, error instanceof Error ? error.message : String(error));
+      logger.info(`Reported initial batch error to HQ-AI`, { batchId });
     } catch (reportError) {
-      logger.error('Failed to report batch error to HQ-AI', { 
+      logger.warn('Failed to report initial batch error to HQ-AI', { 
+        batchId,
+        originalError: error instanceof Error ? error.message : String(error),
         reportError: reportError instanceof Error ? reportError.message : String(reportError) 
       });
     }
