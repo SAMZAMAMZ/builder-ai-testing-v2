@@ -41,9 +41,9 @@ railway variables set PORT=8082
 
 ### **Claude API Keys** (REQUIRED)
 ```bash
-railway variables set CLAUDE_API_KEY_1=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
-railway variables set CLAUDE_API_KEY_2=sk-ant-api03-YOUR_SECOND_KEY_HERE
-railway variables set CLAUDE_API_KEY_3=sk-ant-api03-YOUR_THIRD_KEY_HERE
+railway variables set CLAUDE_API_KEY_1=your_claude_api_key_here
+railway variables set CLAUDE_API_KEY_2=your_claude_api_key_here
+railway variables set CLAUDE_API_KEY_3=your_claude_api_key_here
 ```
 
 ### **GitHub Integration** (REQUIRED)

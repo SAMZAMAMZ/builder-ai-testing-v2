@@ -362,7 +362,7 @@ NODE_ENV=development
 PORT=8082
 
 # Claude API Configuration (Primary)
-CLAUDE_API_KEY_1=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
+CLAUDE_API_KEY_1=your_claude_api_key_here
 
 # GitHub Configuration
 GITHUB_TOKEN=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
@@ -450,7 +450,7 @@ railway create builder-ai-v4
 # Set all required environment variables
 railway variables set NODE_ENV=production
 railway variables set PORT=8082
-railway variables set CLAUDE_API_KEY_1=sk-ant-api03-...
+railway variables set CLAUDE_API_KEY_1=your_claude_api_key_here...
 railway variables set GITHUB_TOKEN=github_pat_11BSHF55I0...
 railway variables set TELEGRAM_BOT_TOKEN=8354306872:AAHb-...
 railway variables set TELEGRAM_ALLOWED_CHAT_ID=8161725772
@@ -473,9 +473,9 @@ railway variables set ENABLE_OVERNIGHT_TESTING=true
 | -------------------------- | -------------------------- | ---------------------------- |
 | `NODE_ENV`                 | `production`               | Production environment       |
 | `PORT`                     | `8082`                     | Railway port assignment      |
-| `CLAUDE_API_KEY_1`         | `sk-ant-api03-...`         | Primary Claude API key       |
-| `CLAUDE_API_KEY_2`         | `sk-ant-api03-...`         | Backup Claude API key        |
-| `CLAUDE_API_KEY_3`         | `sk-ant-api03-...`         | Third Claude API key         |
+| `CLAUDE_API_KEY_1`         | `your_claude_api_key_here...`         | Primary Claude API key       |
+| `CLAUDE_API_KEY_2`         | `your_claude_api_key_here...`         | Backup Claude API key        |
+| `CLAUDE_API_KEY_3`         | `your_claude_api_key_here...`         | Third Claude API key         |
 | `GITHUB_TOKEN`             | `github_pat_11BSHF55I0...` | GitHub repository access     |
 | `TELEGRAM_BOT_TOKEN`       | `8354306872:AAHb-...`      | Telegram notifications       |
 | `TELEGRAM_ALLOWED_CHAT_ID` | `8161725772`               | Authorized chat ID           |
@@ -566,9 +566,9 @@ curl https://your-railway-app.railway.app/progress
 #### **Claude API Management**
 ```env
 # Multiple keys for rotation and rate limiting
-CLAUDE_API_KEY_1=sk-ant-api03-...  # Primary key
-CLAUDE_API_KEY_2=sk-ant-api03-...  # Backup key  
-CLAUDE_API_KEY_3=sk-ant-api03-...  # Third key
+CLAUDE_API_KEY_1=your_claude_api_key_here...  # Primary key
+CLAUDE_API_KEY_2=your_claude_api_key_here...  # Backup key  
+CLAUDE_API_KEY_3=your_claude_api_key_here...  # Third key
 
 # Rate limiting settings
 CLAUDE_RATE_LIMIT_REQUESTS_PER_MINUTE=100
@@ -876,8 +876,8 @@ npm test
 # Solution
 # Check API usage dashboard
 # Add additional API keys to .env
-CLAUDE_API_KEY_2=sk-ant-api03-...
-CLAUDE_API_KEY_3=sk-ant-api03-...
+CLAUDE_API_KEY_2=your_claude_api_key_here...
+CLAUDE_API_KEY_3=your_claude_api_key_here...
 
 # Restart service
 npm restart

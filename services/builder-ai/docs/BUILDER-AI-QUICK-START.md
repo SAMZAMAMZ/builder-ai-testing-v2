@@ -25,7 +25,7 @@ cd /home/admin1800/1800-lottery-v4-thirdweb/services/builder-ai
 nano .env
 
 # Add your Claude API key:
-CLAUDE_API_KEY_1=sk-ant-api03-YOUR_ACTUAL_KEY_HERE
+CLAUDE_API_KEY_1=your_claude_api_key_here
 ```
 
 ### **4. Start Builder-AI**
@@ -61,7 +61,7 @@ railway create builder-ai-v4
 ```bash
 railway variables set NODE_ENV=production
 railway variables set PORT=8082
-railway variables set CLAUDE_API_KEY_1=sk-ant-api03-YOUR_KEY_HERE
+railway variables set CLAUDE_API_KEY_1=your_claude_api_key_here
 railway variables set GITHUB_TOKEN=github_pat_11BSHF55I0...
 ```
 
