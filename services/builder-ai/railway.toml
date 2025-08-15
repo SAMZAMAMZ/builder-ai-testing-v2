@@ -16,7 +16,7 @@ NODE_ENV = "production"
 PORT = { default = "8082" }
 
 [services.build]
-buildCommand = "npm run railway:build"
+buildCommand = "npm install && npm run railway:build"
 
 [services.deploy]
 startCommand = "npm run railway:start"
