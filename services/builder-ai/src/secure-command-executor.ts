@@ -76,7 +76,7 @@ export class SecureCommandExecutor {
         ...process.env,
         ...sanitizedEnvVars,
         // Security: Remove dangerous environment variables
-        PATH: this.getSafePath() + ':' + (process.env.PATH || ''),
+        PATH: this.getSafePath(),
         // Ensure safe execution environment
         NODE_ENV: process.env.NODE_ENV || 'development'
       };
@@ -84,15 +84,12 @@ export class SecureCommandExecutor {
       // Parse command to separate executable and arguments
       const { executable, args } = this.parseCommand(sanitizedCommand);
       
-      // For Railway container compatibility, use shell for basic commands
-      const useShell = ['echo', 'node', 'npm', 'npx', 'hardhat', 'which', 'pwd', 'ls', 'cat'].includes(executable);
-      
       const child = spawn(executable, args, {
         cwd: workingDirectory,
         env,
         stdio: ['ignore', 'pipe', 'pipe'],
-        // Use shell for basic commands that need PATH resolution
-        shell: useShell
+        // Security: Prevent shell interpretation (Node.js available in Docker container)
+        shell: false
       });
       
       let stdout = '';
@@ -251,8 +248,8 @@ export class SecureCommandExecutor {
   }
 
   private getSafePath(): string {
-    // Provide a safe PATH environment variable with Node.js paths for Railway/Docker
-    return '/app/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/opt/nodejs/bin:/usr/local/nodejs/bin';
+    // Provide a safe PATH environment variable for Docker container with Node.js
+    return '/app/node_modules/.bin:/usr/local/bin:/usr/bin:/bin';
   }
 
   private sanitizeOutput(output: string): string {
