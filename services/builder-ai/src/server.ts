@@ -20,7 +20,7 @@ import { requireAuth, optionalAuth, apiAuthManager, AuthenticatedRequest } from 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8082;
 const exec = promisify(cpExec);
 const LOTTERY_REPO_PATH = process.env.LOTTERY_REPO_PATH || '/workspace/1800-lottery-v3-thirdweb';
 
@@ -637,8 +637,9 @@ process.on('unhandledRejection', async (reason, promise) => {
   process.exit(1);
 });
 
-// Start server
-app.listen(PORT, async () => {
+// Start server with error handling
+const server = app.listen(PORT, async () => {
+  console.log(`🚀 Builder-AI server starting on port ${PORT}`);
   logger.info(`🚀 Builder-AI server running on port ${PORT}`, {
     port: PORT,
     environment: process.env.NODE_ENV || 'development',
@@ -657,45 +658,54 @@ app.listen(PORT, async () => {
     history: `http://localhost:${PORT}/history`,
     syncReport: `http://localhost:${PORT}/sync-report`
   });
-
+  
+  console.log(`✅ Server ready and listening on port ${PORT}`);
+  
   // Send startup notification
   notifications.systemStart().catch(err => 
     logger.warn('Failed to send startup notification', { 
       error: err instanceof Error ? err.message : String(err) 
     })
   );
-
-    // Initialize Claude API Manager
-    try {
-      await claudeAPIManager.makeClaudeRequest([{ role: 'user', content: 'test' }]);
-      logger.info('Claude API Manager initialized successfully');
-    } catch (err) {
-      logger.error('Failed to initialize Claude API Manager', {
-        error: err instanceof Error ? err.message : String(err)
-      });
-    }
-
-  // Test Telegram connection after 5 seconds
-  setTimeout(async () => {
-    const testResult = await sendTelegramNotification('🔧 Builder-AI startup test - system operational');
-    if (testResult) {
-      logger.info('Telegram notifications working correctly');
-    } else {
-      logger.warn('Telegram notifications not configured or failing');
-    }
-  }, 5000);
   
-  // Ensure the lottery repository is available on Railway
-  try {
-    await ensureLotteryRepository();
-    logger.info('📦 Lottery repository ready', { repoPath: LOTTERY_REPO_PATH });
-  } catch (error) {
-    logger.error('Failed to prepare lottery repository', { error: error instanceof Error ? error.message : String(error) });
-  }
+  // Initialize components asynchronously after server is running
+  setImmediate(async () => {
+    try {
+      // Initialize Claude API Manager (test on first use)
+      logger.info('Claude API Manager ready for first use');
+      
+      // Test Telegram connection after 5 seconds
+      setTimeout(async () => {
+        const testResult = await sendTelegramNotification('🔧 Builder-AI startup test - system operational');
+        if (testResult) {
+          logger.info('Telegram notifications working correctly');
+        } else {
+          logger.warn('Telegram notifications not configured or failing');
+        }
+      }, 5000);
+      
+      // Ensure the lottery repository is available on Railway
+      try {
+        await ensureLotteryRepository();
+        logger.info('📦 Lottery repository ready', { repoPath: LOTTERY_REPO_PATH });
+      } catch (error) {
+        logger.error('Failed to prepare lottery repository', { error: error instanceof Error ? error.message : String(error) });
+      }
 
-  // Start sync cycle for local laptop access
-  syncManager.startSyncCycle();
-  logger.info('📊 Sync cycle started for local laptop access');
+      // Start sync cycle for local laptop access
+      syncManager.startSyncCycle();
+      logger.info('📊 Sync cycle started for local laptop access');
+    } catch (error) {
+      logger.error('Error during component initialization', { error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+});
+
+// Add error handling for server startup
+server.on('error', (err: Error) => {
+  console.error('❌ Server startup error:', err);
+  logger.error('Server startup failed', { error: err.message, stack: err.stack });
+  process.exit(1);
 });
 
 export { app };
