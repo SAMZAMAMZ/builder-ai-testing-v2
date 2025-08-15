@@ -23,7 +23,13 @@ export class SecureCommandExecutor {
     
     // Whitelist of allowed working directories
     this.allowedPaths = new Set([
+      '/app',
       '/app/tests',
+      '/app/contracts',
+      '/app/src', 
+      '/app/workspace',
+      '/workspace',
+      '/tmp',
       '/home/admin1800/1800-lottery-v4-thirdweb/tests',
       '/home/admin1800/1800-lottery-v4-thirdweb/services/builder-ai',
       '/home/admin1800/builder-ai-testing-fresh/contracts/EntryGateFinal',
